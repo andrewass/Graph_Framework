@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * Created by Andreas Wassum on 8/28/17.
@@ -20,6 +21,7 @@ public class GraphGUI {
 
     void panelSetup(){
         panel = new JPanel();
+        panel.setLayout(new GridBagLayout());
         addVertex = new JButton("Add Vertex");
         addEdge = new JButton("Add Edge");
         panel.add(addVertex);
