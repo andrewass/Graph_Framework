@@ -1,5 +1,5 @@
 /**
- * Created by andreas on 8/28/17.
+ * Created by Andreas Wassum on 8/28/17.
  */
 public class Framework {
 
