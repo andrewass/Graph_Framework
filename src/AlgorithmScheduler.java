@@ -7,7 +7,8 @@ import java.util.ArrayList;
 public class AlgorithmScheduler {
 
 
-    ArrayList<Vertex> vertices; ArrayList<Edge> edges;
+    private ArrayList<Vertex> vertices;
+    private ArrayList<Edge> edges;
 
     public AlgorithmScheduler(ArrayList<Vertex> vertices, ArrayList<Edge> edges) {
         this.vertices = vertices;
@@ -17,12 +18,17 @@ public class AlgorithmScheduler {
     public void decideAlgorithm(String operation){
         System.out.println("ALGO IS "+operation);
         switch (operation){
-            case  "Find Connected Components":
-                new ConnectedComponents().solve(vertices, edges);
+            case  "Connected Components":
+                new ConnectedComponents(vertices, edges);
+                break;
             case "Minimum Spanning Tree":
-                new MST().solve(vertices,edges);
+                new MST(vertices,edges);
+                break;
+            case "4 Coloring":
+                new GraphColoring(vertices, edges);
+                break;
             default:
-                System.out.println("Error. No matching operation found!");
+                System.out.println("Error. No matching operation found! op is "+operation);
         }
 
     }

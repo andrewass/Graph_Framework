@@ -12,19 +12,20 @@ import java.util.ArrayList;
  */
 public class GraphGUI {
 
-    JFrame frame;
-    JPanel toppanel, midpanel, bottompanel;
-    JButton compute;
-    JComboBox menuselecter;
+    private JFrame frame;
+    private JPanel toppanel, bottompanel;
+    PaintPanel midpanel;
+    private JButton compute, clear, reset;
+    private JComboBox menuselecter;
     JRadioButton addEdge, addVertex;
-    ButtonGroup buttons;
+    private ButtonGroup buttons;
     ArrayList<Vertex> vertices;
     ArrayList<Edge> edges;
     private AlgorithmScheduler scheduler;
-    private GridBagConstraints gbc = new GridBagConstraints();
 
     private String[] operations = {
-            "Find Connected Components",
+            "Connected Components",
+            "4 Coloring",
             "Minimum Spanning Tree"};
 
 
@@ -37,44 +38,70 @@ public class GraphGUI {
         scheduler = new AlgorithmScheduler(vertices, edges);
     }
 
+    /**
+     * Setup of the top-, mid- and bottom panel in the JFrame object.
+     */
+    private void panelSetup(){
+        toppanel = new JPanel();
+        midpanel = new PaintPanel(this);
+        bottompanel = new JPanel();
+        setUpTopPanel();
+        midpanel.setSize(700,700);
+        frame.add(midpanel, BorderLayout.CENTER);
+        setUpBottomPanel();
+    }
 
-    void panelSetup(){
-
+    /**
+     * Setup up of the top panel in the JFrame
+     */
+    private void setUpTopPanel(){
         compute = new JButton("Calculate");
-
         compute.addActionListener( new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
                 scheduler.decideAlgorithm(menuselecter.getSelectedItem().toString());
+                midpanel.repaint();
             }
         });
-
         menuselecter = new JComboBox(operations);
-        toppanel = new JPanel();
+        reset = new JButton("Reset");
+        reset.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                midpanel.colorReset();
+            }
+        });
         toppanel.add(menuselecter);
         toppanel.add(compute);
+        toppanel.add(reset);
         toppanel.setSize(150,150);
         toppanel.setBackground(Color.GRAY);
+        frame.add(toppanel, BorderLayout.NORTH);
+    }
 
-        midpanel = new PaintPanel(this);
-        midpanel.setSize(700,700);
 
+    /**
+     * Setup of the bottom panel in the JFrame
+     */
+    private void setUpBottomPanel(){
         addVertex = new JRadioButton("Add Vertex");
         addEdge = new JRadioButton("Add Edge");
         buttons = new ButtonGroup();
         buttons.add(addEdge);
         buttons.add(addVertex);
-        bottompanel = new JPanel();
+        clear = new JButton("Clear Graph");
+        clear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                edges.clear();
+                vertices.clear();
+                midpanel.repaint();
+            }
+        });
         bottompanel.setSize(150,150);
         bottompanel.add(addVertex);
         bottompanel.add(addEdge);
-
-
-        frame.add(toppanel, BorderLayout.NORTH);
-        frame.add(midpanel, BorderLayout.CENTER);
+        bottompanel.add(clear);
         frame.add(bottompanel, BorderLayout.SOUTH);
-
     }
-
-
 }

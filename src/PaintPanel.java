@@ -17,7 +17,8 @@ public class PaintPanel extends JPanel {
     private Vertex[] marked = new Vertex[2];
     private GraphGUI parentGUI;
     private int markedVertices = 0;
-
+    private Color[] colors = {Color.WHITE, Color.BLUE, Color.MAGENTA, Color.yellow, Color.GREEN,
+            Color.CYAN, Color.ORANGE, Color.PINK, Color.RED};
     /**
      *
      */
@@ -41,6 +42,14 @@ public class PaintPanel extends JPanel {
     }
 
 
+    public void colorReset(){
+        for(Vertex vertex : vertices){
+            vertex.colorID = 0;
+        }
+        repaint();
+    }
+
+
     /**
      * Mark a vertex as and endpoint of an edge.
      * If markedVertices equals 2, an edge is adde betweeen the
@@ -54,6 +63,7 @@ public class PaintPanel extends JPanel {
             if(v.ellipse.contains(xCord, yCord)){
                 v.marked = true;
                 marked[markedVertices] = v;
+                v.colorID = 1;
                 markedVertices++;
                 if(markedVertices == 2){
                     Edge edge = new Edge(marked[0], marked[1]);
@@ -62,6 +72,8 @@ public class PaintPanel extends JPanel {
                     marked[1].edges.add(edge);
                     marked[0].marked = false;
                     marked[1].marked = false;
+                    marked[0].colorID = 0;
+                    marked[1].colorID = 0;
                     markedVertices = 0;
                 }
                 break;
@@ -97,15 +109,16 @@ public class PaintPanel extends JPanel {
         Graphics2D comp =  (Graphics2D) g;
         comp.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         for(Vertex v : vertices){
-            if(!v.marked){
+            if(v.colorID == 0) {
                 comp.setColor(Color.BLACK);
                 comp.draw(v.ellipse);
             }
             else {
-                comp.setColor(Color.BLUE);
+                comp.setColor( colors[v.colorID]);
                 comp.fill(v.ellipse);
             }
         }
+        comp.setColor(Color.BLACK);
         for(Edge e : edges){
             comp.drawLine( e.from.x, e.from.y, e.to.x, e.to.y);
         }

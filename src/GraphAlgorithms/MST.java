@@ -5,14 +5,10 @@ import java.util.ArrayList;
 /**
  * Created by Andreas Wassum on 11.09.17.
  */
-public class MST {
+public class MST extends GraphAlgorithm {
 
-    /**
-     *
-     * @param vertices
-     * @param edges
-     */
-    public void solve(ArrayList<Vertex> vertices, ArrayList<Edge> edges){
 
+    public MST(ArrayList<Vertex> vertices, ArrayList<Edge> edges) {
+        super(vertices, edges);
     }
 }
