@@ -24,7 +24,7 @@ public class AlgorithmScheduler {
             case "Minimum Spanning Tree":
                 new MST(vertices,edges);
                 break;
-            case "4 Coloring":
+            case "Graph Coloring":
                 new GraphColoring(vertices, edges);
                 break;
             default:

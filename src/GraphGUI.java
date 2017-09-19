@@ -25,7 +25,7 @@ public class GraphGUI {
 
     private String[] operations = {
             "Connected Components",
-            "4 Coloring",
+            "Graph Coloring",
             "Minimum Spanning Tree"};
 
 

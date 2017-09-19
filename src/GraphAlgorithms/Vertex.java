@@ -9,12 +9,15 @@ import java.util.ArrayList;
  * Created by Andreas Wassum on 8/30/17.
  */
 public class Vertex {
-    public int x,y, colorID = 0;
+    public Vertex parent;
+    public int x,y, id,  colorID = 0;
     public boolean marked, visited;
     public Ellipse2D.Double ellipse;
     public ArrayList<Edge> edges = new ArrayList<>();
 
-    public Vertex(int x, int y){        this.x = x;
+    public Vertex(int x, int y, int id){
+        this.x = x;
         this.y = y;
+        this.id = id;
     }
 }

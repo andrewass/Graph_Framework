@@ -2,8 +2,8 @@ package GraphAlgorithms;
 /**
  * Created by Andreas Wassum on 10.09.17.
  */
-public class Edge {
-    int colorID = 0;
+public class Edge implements Comparable<Edge> {
+    public int colorID = 1, cost = 1;
     public Vertex from,to;
 
     public Edge(Vertex from, Vertex to){
@@ -11,4 +11,8 @@ public class Edge {
         this.to = to;
     }
 
+    @Override
+    public int compareTo(Edge o) {
+        return cost - o.cost;
+    }
 }

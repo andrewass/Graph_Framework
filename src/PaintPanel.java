@@ -16,8 +16,8 @@ public class PaintPanel extends JPanel {
     private ArrayList<Edge> edges = new ArrayList<>();
     private Vertex[] marked = new Vertex[2];
     private GraphGUI parentGUI;
-    private int markedVertices = 0;
-    private Color[] colors = {Color.WHITE, Color.BLUE, Color.MAGENTA, Color.yellow, Color.GREEN,
+    private int markedVertices = 0, vertexCount = 0;
+    private Color[] colors = {Color.WHITE, Color.BLACK,  Color.BLUE, Color.MAGENTA, Color.yellow, Color.GREEN,
             Color.CYAN, Color.ORANGE, Color.PINK, Color.RED};
     /**
      *
@@ -45,6 +45,9 @@ public class PaintPanel extends JPanel {
     public void colorReset(){
         for(Vertex vertex : vertices){
             vertex.colorID = 0;
+        }
+        for(Edge edge : edges){
+            edge.colorID = 1;
         }
         repaint();
     }
@@ -89,7 +92,8 @@ public class PaintPanel extends JPanel {
      * @param yCord  y-coordinate of the vertex
      */
     private void addVertex(int xCord, int yCord){
-        Vertex vert = new Vertex(xCord, yCord);
+        vertexCount++;
+        Vertex vert = new Vertex(xCord, yCord, vertexCount);
         vert.ellipse = new Ellipse2D.Double(xCord, yCord, 30, 30);
         vertices.add(vert);
     }
@@ -118,8 +122,8 @@ public class PaintPanel extends JPanel {
                 comp.fill(v.ellipse);
             }
         }
-        comp.setColor(Color.BLACK);
         for(Edge e : edges){
+            comp.setColor( colors[e.colorID]);
             comp.drawLine( e.from.x, e.from.y, e.to.x, e.to.y);
         }
     }

@@ -17,5 +17,8 @@ abstract class GraphAlgorithm {
             v.visited = false;
             v.colorID = 0;
         }
+        for(Edge e : edges){
+            e.colorID = 1;
+        }
     }
 }
