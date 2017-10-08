@@ -10,11 +10,24 @@ public class AlgorithmScheduler {
     private ArrayList<Vertex> vertices;
     private ArrayList<Edge> edges;
 
+
+    /**
+     * The algorithm stores the same set of edges found in GUI.
+
+     * @param vertices  the list of vertices added by the user in the GUI.
+     * @param edges     the list of edges added by the user in the GUI.
+     */
     public AlgorithmScheduler(ArrayList<Vertex> vertices, ArrayList<Edge> edges) {
         this.vertices = vertices;
         this.edges = edges;
     }
 
+
+    /**
+     * Based on input string, the matching algorithm is carried out.
+     *
+     * @param operation  contains the name of the algorithm to apply.
+     */
     public void decideAlgorithm(String operation){
         System.out.println("ALGO IS "+operation);
         switch (operation){

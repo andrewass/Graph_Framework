@@ -8,6 +8,9 @@ import GraphAlgorithms.Edge;
 import GraphAlgorithms.Vertex;
 
 /**
+ * Class responsible for painting the panel containing
+ * the vertices and edges.
+ *
  * Created by Andreas Wassum on 8/30/17.
  */
 public class PaintPanel extends JPanel {
@@ -19,8 +22,10 @@ public class PaintPanel extends JPanel {
     private int markedVertices = 0, vertexCount = 0;
     private Color[] colors = {Color.WHITE, Color.BLACK,  Color.BLUE, Color.MAGENTA, Color.yellow, Color.GREEN,
             Color.CYAN, Color.ORANGE, Color.PINK, Color.RED};
+
     /**
-     *
+     * Constructor, which adds a mouselistener
+     * for adding vertices and edges.
      */
     PaintPanel(GraphGUI root){
         parentGUI = root;
@@ -30,7 +35,7 @@ public class PaintPanel extends JPanel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                if(root.addEdge.isSelected()) {
+                if(root.addUndirectedEdge.isSelected()) {
                    markVertex(e.getX(), e.getY());
                 }
                 else if(root.addVertex.isSelected()){
@@ -42,6 +47,9 @@ public class PaintPanel extends JPanel {
     }
 
 
+    /**
+     * Reset the color of each node and edge.
+     */
     public void colorReset(){
         for(Vertex vertex : vertices){
             vertex.colorID = 0;

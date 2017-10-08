@@ -1,5 +1,7 @@
 package GraphAlgorithms;
 /**
+ * An Edge object represents an edge in the GUI
+ *
  * Created by Andreas Wassum on 10.09.17.
  */
 public class Edge implements Comparable<Edge> {

@@ -8,6 +8,12 @@ import GraphAlgorithms.Vertex;
 import java.util.ArrayList;
 
 /**
+ * The main GUI class. Dividing the frame into three panels.
+ *
+ * The top panel is for selecting which algorithm to apply.
+ * The middle panel contains the graph.
+ * The bottom panel contains options for adding verices and edges
+ *
  * Created by Andreas Wassum on 8/28/17.
  */
 public class GraphGUI {
@@ -17,7 +23,7 @@ public class GraphGUI {
     PaintPanel midpanel;
     private JButton compute, clear, reset;
     private JComboBox menuselecter;
-    JRadioButton addEdge, addVertex;
+    JRadioButton addDirectedEdge, addUndirectedEdge, addVertex;
     private ButtonGroup buttons;
     ArrayList<Vertex> vertices;
     ArrayList<Edge> edges;
@@ -29,6 +35,9 @@ public class GraphGUI {
             "Minimum Spanning Tree"};
 
 
+    /**
+     * Properties of the frame are defined in the constructor.
+     */
     GraphGUI(){
         frame = new JFrame("Graph GUI");
         frame.setSize(1000,1000);
@@ -85,9 +94,11 @@ public class GraphGUI {
      */
     private void setUpBottomPanel(){
         addVertex = new JRadioButton("Add Vertex");
-        addEdge = new JRadioButton("Add Edge");
+        addUndirectedEdge = new JRadioButton("Add Undirected Edge");
+        addDirectedEdge = new JRadioButton("Add Directed Edge");
         buttons = new ButtonGroup();
-        buttons.add(addEdge);
+        buttons.add(addUndirectedEdge);
+        buttons.add(addDirectedEdge);
         buttons.add(addVertex);
         clear = new JButton("Clear Graph");
         clear.addActionListener(new ActionListener() {
@@ -100,7 +111,8 @@ public class GraphGUI {
         });
         bottompanel.setSize(150,150);
         bottompanel.add(addVertex);
-        bottompanel.add(addEdge);
+        bottompanel.add(addUndirectedEdge);
+        bottompanel.add(addDirectedEdge);
         bottompanel.add(clear);
         frame.add(bottompanel, BorderLayout.SOUTH);
     }

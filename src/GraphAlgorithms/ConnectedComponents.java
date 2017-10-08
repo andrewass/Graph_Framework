@@ -11,6 +11,24 @@ public class ConnectedComponents extends GraphAlgorithm {
 
     private int group = 2;
 
+
+    /**
+     * Iterates over all edges, and call dfs on any vertex not already visited.
+     * The number of dfs calls equals the number of components
+     *
+     * @param vertices  list of vertices
+     * @param edges     list of edges
+     */
+    public ConnectedComponents(ArrayList<Vertex> vertices, ArrayList<Edge> edges) {
+        super(vertices, edges);
+        for(Vertex v : vertices){
+            if(!v.visited){
+                dfs(v);
+                group++;
+            }
+        }
+    }
+
     /**
      * Performing a depth-first search to find the connected components
      *
@@ -32,19 +50,4 @@ public class ConnectedComponents extends GraphAlgorithm {
             }
         }
     }
-
-
-
-    public ConnectedComponents(ArrayList<Vertex> vertices, ArrayList<Edge> edges) {
-        super(vertices, edges);
-        for(Vertex v : vertices){
-            if(!v.visited){
-                dfs(v);
-                group++;
-            }
-        }
-    }
-
-
-
 }

@@ -10,7 +10,6 @@ import java.util.PriorityQueue;
 
 /**
  * A class structure for disjoint sets.
- * Used to calculate a minimum spanning tree.
  */
 class DisjointSets{
 
@@ -25,13 +24,15 @@ class DisjointSets{
     /**
      * Merging sets. The roots get a decreased number.
      * The lower the number, the more elements the set contains..
-     * This reflects the height of the union tree */
+     * This reflects the height of the union tree
+     *
+     * @param a  the first set id
+     * @param b  the second set id
+     */
     void union(int a, int b){
-        // If a is deeper than b, join b to the set of a
         if(sets[b] < sets[a])
             sets[a] = b;
         else{
-            //If equal, choose a as root
             if(sets[a] == sets[b])
                 sets[a]--;
             sets[b] = a;
@@ -40,13 +41,14 @@ class DisjointSets{
 
 
     /**
-     *  Find the set for a given number x.
+     * Find the set for a given number x.
+     *
+     * @param x an object represented by the number x
+     * @return  the set id for x.
      */
     int findSet(int x){
-        // If the number is less than zero, return its number
         if(sets[x] < 0)
             return x;
-            // Else return set number of its root
         else
             return findSet(sets[x]);
     }
@@ -56,6 +58,7 @@ class DisjointSets{
 /**
  * class for finding a minimum spanning tree from a graph, given by its lists
  * of edges and vertices.
+ * Based on Kruskal's algorithm.
  */
 public class MST extends GraphAlgorithm {
 
@@ -65,6 +68,10 @@ public class MST extends GraphAlgorithm {
 
     /**
      * Find a minimum spanning tree of the given graph.
+     * The edge at the front of the queue is polled from the queue.
+     * If the two adjacent vertices are not stored in the same set,
+     * store them in the same set by calling the union method.
+     * This implies that the selected edge is a part of the MST.
      */
     private void findMST(){
         while(!edgeQ.isEmpty()){
@@ -84,9 +91,11 @@ public class MST extends GraphAlgorithm {
 
 
     /**
+     * Adding each edge to a priority queue, where the front of the
+     * queue contains the edge with the lowest cost.
      *
-     * @param vertices
-     * @param edges
+     * @param vertices  list of vertices.
+     * @param edges     list of edges.
      */
     public MST(ArrayList<Vertex> vertices, ArrayList<Edge> edges) {
         super(vertices, edges);
