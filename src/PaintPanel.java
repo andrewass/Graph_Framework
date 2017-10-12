@@ -79,12 +79,11 @@ public class PaintPanel extends JPanel {
                 if(markedVertices == 2){
                     Edge edge = new Edge(marked[0], marked[1]);
                     edges.add(edge);
-                    marked[0].edges.add(edge);
-                    marked[1].edges.add(edge);
-                    marked[0].marked = false;
-                    marked[1].marked = false;
-                    marked[0].colorID = 0;
-                    marked[1].colorID = 0;
+                    for(int i=0; i<=1; i++){
+                        marked[i].edges.add(edge);
+                        marked[i].marked = false;
+                        marked[i].colorID = 0;
+                    }
                     markedVertices = 0;
                 }
                 break;

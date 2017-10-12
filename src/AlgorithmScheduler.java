@@ -29,7 +29,6 @@ public class AlgorithmScheduler {
      * @param operation  contains the name of the algorithm to apply.
      */
     public void decideAlgorithm(String operation){
-        System.out.println("ALGO IS "+operation);
         switch (operation){
             case  "Connected Components":
                 new ConnectedComponents(vertices, edges);
@@ -41,8 +40,7 @@ public class AlgorithmScheduler {
                 new GraphColoring(vertices, edges);
                 break;
             default:
-                System.out.println("Error. No matching operation found! op is "+operation);
+                System.out.println("Error. No matching operation found! Input operation is "+operation);
         }
-
     }
 }
