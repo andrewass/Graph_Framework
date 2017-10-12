@@ -1,3 +1,5 @@
+import javax.swing.*;
+
 /**
  * Created by Andreas Wassum on 8/28/17.
  *
@@ -6,7 +8,13 @@
 public class Framework {
 
     public static void main(String[] args){
-        new GraphGUI();
-
+        SwingUtilities.invokeLater(
+                (new Runnable() {
+                    @Override
+                    public void run() {
+                        new GraphGUI();
+                    }
+                })
+        );
     }
 }
